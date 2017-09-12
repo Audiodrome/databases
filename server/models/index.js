@@ -13,10 +13,10 @@ module.exports = {
       });
     }, // a function which produces all the messages
     post: function (data, callback) {
-      console.log(data);
-      var values = [data.username, data.text, data.roomname];
+      console.log('POST message data in model.', data);
+      var values = [data.username, data.message, data.roomname];
       var queryString = 'INSERT INTO messages (username, message, roomname) VALUES(?, ?, ?)';
-      console.log(data);
+      console.log('What are my posted', values);
       db.query(queryString, values, function(err, result) {
         if (err) {
           callback(err);
@@ -30,7 +30,16 @@ module.exports = {
 
   users: {
     // Ditto as above.
-    get: function () {},
+    get: function () {
+      var queryString = 'SELECT * FROM users';
+      db.query(queryString, function(err, result) {
+        if (err) {
+          callback(err);
+          return;
+        }
+        callback(null, result);
+      });
+    },
     post: function (data, callback) {
       console.log('attempting to post username: ', data.username);
       var values = [data.username];

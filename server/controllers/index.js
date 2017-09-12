@@ -48,19 +48,16 @@ module.exports = {
       });
     }, // a function which handles a get request for all messages
     post: function (req, res) {
-      console.log('i made it to post');
-      collectData(req, function(data) {
-        console.log('i made it to MESSAGES POST data', data);
-        models.messages.post(data, function(err, result) {
-          if (err) {
-            console.log('error on insert to messages db', err);
-            return;
-          }
-          console.log('MESSAGES saved to db', result);
-          res.writeHead(201, headers);
-          res.end();
-          // sendResponse(res, data, 201);
-        });
+      console.log('i made it to MESSAGES POST data', req.body);
+      models.messages.post(req.body, function(err, result) {
+        if (err) {
+          console.log('error on insert to messages db', err);
+          return;
+        }
+        console.log('MESSAGES saved to db', result);
+        res.writeHead(201, headers);
+        res.end();
+        // sendResponse(res, data, 201);
       });
     } // a function which handles posting a message to the database
   },
@@ -74,17 +71,14 @@ module.exports = {
     },
     post: function (req, res) {
       // console.log('post to users was request');
-
-      collectData(req, function(data) {
-        console.log('i made it to USERS POST data', data);
-        models.users.post(data, function(err, result) {
-          if (err) {
-            console.log('error on insert to users db', err);
-            return;
-          }
-          console.log('USERS saved to db', result);
-          sendResponse(res, data, 201);
-        });
+      console.log('i made it to USERS POST data', req.body);
+      models.users.post(req.body, function(err, result) {
+        if (err) {
+          console.log('error on insert to users db', err);
+          return;
+        }
+        console.log('USERS saved to db', result);
+        sendResponse(res, result, 201);
       });
     }
   }
