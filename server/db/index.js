@@ -17,3 +17,5 @@ db.connect(function(err) {
   }
   console.log('Chatter Connected!');
 });
+
+module.exports = db;
