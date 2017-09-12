@@ -15,7 +15,7 @@ db.connect(function(err) {
   if (err) {
     throw err;
   }
-  console.log('Chatter Connected!');
+  console.log('Chat database connected!');
 });
 
 module.exports = db;
