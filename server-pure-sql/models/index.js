@@ -29,7 +29,7 @@ module.exports = {
 
   users: {
     // Ditto as above.
-    get: function (callback) {
+    get: function () {
       var queryString = 'SELECT * FROM users';
       db.query(queryString, function(err, result) {
         if (err) {
